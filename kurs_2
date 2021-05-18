@@ -1,0 +1,63 @@
+ing System;
+using System.Linq;
+namespace _23_2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ///<summary>
+            ///Напечатать все цифры десятичной записи чисел 
+            ///2500 и 1!+2!+3!+…+100!. (Рекомендация: 
+            ///представить «длинные» натуральные числа в виде 
+            ///массивов из цифр и реализовать нужные операции над ними).
+            /// </summary>
+            int i, j;
+            double fract = 1, fract1 = 0;
+            string massive_string = null;
+            int[] massive_factorial = new int[158];
+            int[] massive_sum = new int[158];
+            massive_factorial[0] = 1;
+            for (i = 1; i < 101; i++)
+            {
+                for (j = 0; j < massive_factorial.Length; j++)
+                {
+                    massive_factorial[j] *= i;
+                    if ((j != 0) & (j != massive_factorial.Length))
+                    {
+                        if (massive_factorial[j - 1] > 9)
+                        {
+                            massive_factorial[j] += massive_factorial[j - 1] / 10;
+                            massive_factorial[j - 1] %= 10;
+                        }
+                    }
+                }
+                for (j = 0; j < massive_sum.Length; j++)
+                {
+                    massive_sum[j] += massive_factorial[j];
+                    if ((j != 0) & (j != massive_sum.Length - 1))
+                    {
+                        if (massive_sum[j - 1] > 9)
+                        {
+                            massive_sum[j] += massive_sum[j - 1] / 10;
+                            massive_sum[j - 1] %= 10;
+                        }
+                    }
+                }
+                    
+
+                fract *= i;
+                fract1 += fract;
+
+                
+                
+            }
+            Console.Write(2500);
+            for (j = massive_factorial.Length - 1; j >= 0; j--)
+            {
+                massive_string += massive_sum[j];
+                Console.Write(massive_sum[j]);
+            }
+        }
+    }
+}

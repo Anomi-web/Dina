@@ -1,5 +1,4 @@
-ing System;
-using System.Linq;
+using System;
 namespace _23_2
 {
     class Program
@@ -12,19 +11,38 @@ namespace _23_2
             ///представить «длинные» натуральные числа в виде 
             ///массивов из цифр и реализовать нужные операции над ними).
             /// </summary>
+
+            ///<summary>
+            ///объявление переменных
+            /// </summary>
             int i, j;
-            double fract = 1, fract1 = 0;
             string massive_string = null;
             int[] massive_factorial = new int[158];
             int[] massive_sum = new int[158];
             massive_factorial[0] = 1;
+
+            ///<summary>
+            ///цикл дл перебора чисел от 1 до 100(условие - конечный факториал равен 100)
+            /// </summary>
             for (i = 1; i < 101; i++)
             {
+                ///<summary>
+                ///вычисление факториала для числа, равного i
+                /// </summary>
                 for (j = 0; j < massive_factorial.Length; j++)
                 {
+                    ///<summary>
+                    ///Перемножение каждого элемента массива на i. "Умножение на столбик"
+                    /// </summary>
                     massive_factorial[j] *= i;
-                    if ((j != 0) & (j != massive_factorial.Length))
+                    ///<summary>
+                    ///Если элемент не первый...
+                    /// </summary>
+                    if (j != 0)
                     {
+                        ///<summary>
+                        ///Если элемент в массиве чисел двузначный - переносим десятки в следующий разряд
+                        /// </summary>
                         if (massive_factorial[j - 1] > 9)
                         {
                             massive_factorial[j] += massive_factorial[j - 1] / 10;
@@ -32,32 +50,42 @@ namespace _23_2
                         }
                     }
                 }
+                ///<summary>
+                ///Вычисление суммы всех факториалов
+                /// </summary>
                 for (j = 0; j < massive_sum.Length; j++)
                 {
+                    ///<summary>
+                    ///Прибавление каждого элемента вычисленного факториала к каждому элементу суммы факториалов. "Сумма в столбик"
+                    /// </summary>
                     massive_sum[j] += massive_factorial[j];
-                    if ((j != 0) & (j != massive_sum.Length - 1))
+                    ///<summary>
+                    ///Если элемент не первый...
+                    /// </summary>
+                    if (j != 0)
                     {
+                        ///<summary>
+                        ///Если элемент в массиве чисел двузначный - переносим десятки в следующий разряд
+                        /// </summary>
                         if (massive_sum[j - 1] > 9)
                         {
                             massive_sum[j] += massive_sum[j - 1] / 10;
                             massive_sum[j - 1] %= 10;
                         }
                     }
-                }
-                    
-
-                fract *= i;
-                fract1 += fract;
-
-                
-                
+                } 
             }
-            Console.Write(2500);
+            ///<summary>
+            ///Преобразование массива цифр в строку
+            /// </summary>
             for (j = massive_factorial.Length - 1; j >= 0; j--)
             {
                 massive_string += massive_sum[j];
-                Console.Write(massive_sum[j]);
             }
+            ///<summary>
+            ///По условию должны быть записаны цифры числа 2500, а также цифры суммы сотни факториалов
+            /// </summary>
+            Console.Write(2500 + massive_string);
         }
     }
 }

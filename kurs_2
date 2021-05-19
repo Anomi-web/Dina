@@ -32,7 +32,7 @@ namespace _23_2
                 for (j = 0; j < massive_factorial.Length; j++)
                 {
                     ///<summary>
-                    ///Перемножение каждого элемента массива на i. "Умножение на столбик"
+                    ///Перемножение каждого элемента массива на i. "Умножение в столбик"
                     /// </summary>
                     massive_factorial[j] *= i;
                     ///<summary>
